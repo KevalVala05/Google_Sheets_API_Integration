@@ -1,100 +1,85 @@
-Google Sheets API Integration
+# 📊 Google Sheets API Integration
 
+A Node.js application demonstrating seamless integration with Google Sheets and Google Drive APIs using OAuth 2.0 authentication.
 
+## 📋 Description
 
+This project showcases how to build a secure API that interacts with Google services. It enables you to upload CSV files to Google Drive (automatically converting them to Google Sheets) and fetch data from existing sheets—all through clean, RESTful endpoints.
 
-Description
+## ✨ Features
 
-Welcome to our project! 🚀 This is a small Node.js application built to demonstrate integration with the Google Sheets and Google Drive APIs. It uses OAuth 2.0 for authentication and provides a simple API for uploading a local CSV file to Google Drive (automatically converting it into a Google Sheet) and fetching data from a Google Sheet.
+- **🔐 OAuth 2.0 Authentication** - Secure Google authentication flow
+- **📤 CSV Upload** - Convert local CSV files to Google Sheets automatically
+- **📥 Data Fetching** - Retrieve sheet data in JSON format
+- **🏗️ Modular Architecture** - Clean separation of routes and controllers
+- **🛡️ Robust Error Handling** - Comprehensive error messages and validation
 
-With this app, you can securely authenticate with Google, upload CSV files, and fetch structured data from Sheets—all through clean and modular APIs.
+## 🚀 Getting Started
 
-Features
+### Prerequisites
 
-🔑 OAuth 2.0 Authentication – Securely authenticate with Google.
+- **Node.js** (v14+ recommended)
+- **npm** or **yarn**
+- **Google Cloud Project** with enabled APIs
 
-📂 CSV Upload – Upload a local data.csv file to Google Drive as a Google Sheet.
+### 🔧 Setup Instructions
 
-📊 Data Fetching – Retrieve and return data from your Google Sheet in JSON format.
+#### 1. Google Cloud Configuration
 
-🗂️ Modular Structure – Organized routes and controllers for maintainability.
+1. Navigate to [Google Cloud Console](https://console.cloud.google.com)
+2. Create a new project or select existing
+3. Enable the following APIs:
+   - Google Sheets API
+   - Google Drive API
+4. Create OAuth 2.0 credentials:
+   - Application type: **Web application**
+   - Authorized redirect URI: `http://localhost:3000/oauth2callback`
+5. Save your **Client ID** and **Client Secret**
 
-⚠️ Error Handling – Clear error messages for missing environment variables or authentication failures.
+#### 2. Environment Configuration
 
-Contributing
+Create a `.env` file in your project root:
 
-We welcome all contributions! Here are some ways to get started:
-
-🐛 Report Bugs – If you find an issue, open an issue with details.
-
-💻 Contribute Code – Developers can fork the repo and submit PRs with improvements.
-
-💡 Suggestions – Have an idea? Open an issue with your proposed feature.
-
-📖 Documentation – Help us improve setup instructions or add more examples.
-
-Getting Started
-Prerequisites
-
-Node.js
- (LTS recommended)
-
-npm (comes with Node.js)
-
-A Google Cloud Project with Sheets API and Drive API enabled
-
-Setup & Configuration
-
-Google Cloud Setup
-
-Go to Google Cloud Console → create a project.
-
-Enable Google Sheets API and Google Drive API.
-
-Create OAuth credentials (Web application).
-
-Add redirect URI:
-
-http://localhost:3000/oauth2callback
-
-
-Copy your Client ID and Client Secret.
-
-Environment Variables
-Create a .env file in your project root:
-
-GOOGLE_CLIENT_ID=YOUR_CLIENT_ID_HERE
-GOOGLE_CLIENT_SECRET=YOUR_CLIENT_SECRET_HERE
+```env
+GOOGLE_CLIENT_ID=your_client_id_here
+GOOGLE_CLIENT_SECRET=your_client_secret_here
 REDIRECT_URI=http://localhost:3000/oauth2callback
-SPREADSHEET_ID=
+SPREADSHEET_ID=your_spreadsheet_id_here
 
+#### 3. Sample Data Setup
 
-Dummy CSV File
-Add a data.csv file in the root folder:
+Create a data.csv file in your project root:
 
 Name,City,Age
 John Doe,New York,30
 Jane Smith,San Francisco,25
 Peter Jones,London,45
 
-Installation & Running
+📦 Installation
+
+# Clone the repository
+git clone <your-repo-url>
+cd <project-directory>
+
 # Install dependencies
 npm install
 
-# Start server
+# Start the server
 node index.js
 
 
-Server will run on http://localhost:3000
+The server will start on http://localhost:3000
 
-API Endpoints
+🔌 API Endpoints
+Method	Endpoint	     Description
+GET	  /auth	             Initiates OAuth 2.0 authentication flow
+GET	  /oauth2callback	 Handles Google OAuth callback and stores access token
+GET	  /upload-csv	     Uploads data.csv to Google Drive as a Sheet
+GET	  /fetch-data	     Retrieves data from the configured spreadsheet
+GET	  /logout	         Revokes authentication token
 
-GET /auth – Start OAuth 2.0 authentication flow.
+Example Usage
 
-GET /oauth2callback – Handles Google’s redirect, saves access token.
-
-GET /upload-csv – Uploads data.csv → creates Google Sheet → returns spreadsheet ID.
-
-GET /fetch-data – Fetches data from the sheet set in .env (SPREADSHEET_ID).
-
-GET /logout – Revokes token and logs user out.
+Authenticate: Visit http://localhost:3000/auth
+Upload CSV: After authentication, go to /upload-csv
+Fetch Data: Use the returned spreadsheet ID to fetch data via /fetch-data
