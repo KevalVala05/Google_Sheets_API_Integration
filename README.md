@@ -91,20 +91,3 @@ GET /upload-csv: Triggers the CSV upload process. It reads data.csv, creates a n
 GET /fetch-data: Fetches and returns the data from the Google Sheet specified by the SPREADSHEET_ID in your .env file.
 
 GET /logout: Revokes the access token and deletes the local token.json file, effectively logging the user out.
-
-Code Structure
-The project follows a modular structure to separate concerns:
-
-google-sheets-api-integration/
-├── controllers/
-│   ├── authController.js     # Handles all authentication logic (login, logout)
-│   └── sheetsController.js   # Handles all Google Sheets/Drive API logic
-├── routes/
-│   ├── authRoutes.js         # Defines all authentication-related endpoints
-│   └── sheetsRoutes.js       # Defines all data-related endpoints
-├── .env                      # Your local environment variables
-├── data.csv                  # The dummy CSV file to be uploaded
-├── index.js                  # Main application entry point
-├── package.json              # Project dependencies and scripts
-├── token.json                # OAuth access token (generated after authentication)
-└── README.md
