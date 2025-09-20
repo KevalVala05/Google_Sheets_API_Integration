@@ -108,14 +108,3 @@ google-sheets-api-integration/
 ├── package.json              # Project dependencies and scripts
 ├── token.json                # OAuth access token (generated after authentication)
 └── README.md
-
-Evaluation Criteria
-This project was built with the following criteria in mind:
-
-Correct OAuth implementation: The authentication flow is handled correctly, with tokens saved for persistence.
-
-Clean, modular code structure: The use of separate controllers and routers makes the codebase easy to read and maintain.
-
-Clear documentation: This README file provides step-by-step instructions for setup and usage.
-
-Proper error handling: The application includes robust error checks for missing environment variables, authentication failures, and API errors.
